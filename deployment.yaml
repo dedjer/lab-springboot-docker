@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lab-springboot-docker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lab-springboot-docker
+    template:
+      metadata:
+        labels:
+          app: lab-springboot-docker
+        spec:
+          containers:
+            - name: lab-springboot-docker
+              image: dedjer/lab-springboot-docker
+              imagePullPolicy: Always
+              ports:
+                - containerPort: 8080
+                  name: "http"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lab-springboot-docker
+spec:
+  selector:
+    app: lab-springboot-docker
+  ports:
+    - name: http
+      portocol: TCP
+      port: 8080
+      targetPort: 80
+    type: LoadBalancer

@@ -1,6 +1,13 @@
 ## Spring Boot Docker Project
 
 Used the following guide: https://spring.io/guides/gs/spring-boot-docker/
+---
+
+## Prerequisites
+
+1. Install Docker Desktop 
+2. Create an account at hub.docker.com
+3. Create a Docker repository for this project: See "Setup Docker Repo" below
 
 ---
 
@@ -8,8 +15,8 @@ Used the following guide: https://spring.io/guides/gs/spring-boot-docker/
 
 Create Docker repository to match below settings in pom.xml
 
-> <docker.image.prefix>dedjer</docker.image.prefix>
-> <repository>${docker.image.prefix}/${project.artifactId}</repository>
+> ```<docker.image.prefix>dedjer</docker.image.prefix>```
+> ```<repository>${docker.image.prefix}/${project.artifactId}</repository>```
 
 Go to http://hub.docker.com
 
@@ -78,4 +85,18 @@ Delete your image using the first 3 characters of the IMAGE ID
 
 > docker rmi 62c
 
+--- 
 
+### Optional: Pull your Docker image from Docker hub
+
+NOTE: This command can also be found on "Repositories" page at hub.docker.com 
+
+> docker pull dedjer/lab-springboot-docker:latest
+
+---
+
+### Troubleshooting
+
+Error during build: `denied: requested access to the resource is denied unauthorized: authentication required`
+
+Solution: Make sure Docker Desktop is installed and you are logged into your Docker account
